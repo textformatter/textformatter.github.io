@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TextFormatter – Instant Text Formatting & Cleanup Tool</title>
+  <meta name="description" content="TextFormatter is a free online text formatting tool that instantly cleans, restructures, and transforms messy text into readable, consistent content. Format JSON, HTML, Markdown, code and more." />
+  <meta name="keywords" content="text formatter, online text formatter, text cleaner, format text online, json formatter, html formatter, code formatter, text beautifier, clean text tool, fix text spacing" />
+  <meta name="author" content="TextFormatter" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://textformatter.github.io/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="TextFormatter – Instant Text Formatting & Cleanup Tool" />
+  <meta property="og:description" content="Free online text formatter. Instantly restructure raw or messy text into clean, readable, consistently styled content." />
+  <meta property="og:url" content="https://textformatter.github.io/" />
+  <meta property="og:site_name" content="TextFormatter" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TextFormatter – Instant Text Formatting Tool" />
+  <meta name="twitter:description" content="Format, clean, and restructure text instantly. Free online tool for JSON, HTML, Markdown, code, and plain text." />
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TextFormatter",
+    "url": "https://textformatter.github.io/",
+    "description": "A free online text formatting tool that instantly cleans, restructures, and transforms messy text into readable, consistent content.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "JSON Formatter",
+      "HTML Formatter",
+      "Markdown Formatter",
+      "Code Beautifier",
+      "Text Cleaner",
+      "Case Converter",
+      "Whitespace Remover",
+      "Indentation Fixer"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a text formatter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A text formatter is a tool that automatically restructures raw or messy text so it follows consistent styling, indentation, and syntax rules. It transforms your input into clean, readable content without manual editing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is TextFormatter free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, TextFormatter is completely free. No account or signup required. All formatting happens directly in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What types of text can TextFormatter handle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TextFormatter handles plain text, JSON, HTML, Markdown, CSS, JavaScript, XML, SQL, and more. It also includes tools for case conversion, whitespace cleanup, and line sorting."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header injected by header.js -->
+  <div id="header-root"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 1 · HERO
+    ══════════════════════════════════════════ -->
+    <section class="hero" id="home" aria-label="Hero">
+      <div class="hero-bg">
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="container hero-inner">
+        <div class="hero-badge">✦ Free &amp; No Sign-Up Required</div>
+        <h1 class="hero-title">
+          Turn Messy Text Into<br/>
+          <em>Perfectly Formatted</em> Content
+        </h1>
+        <p class="hero-subtitle">
+          TextFormatter instantly restructures raw, inconsistent, or chaotic text—fixing indentation, spacing, syntax, and style—so you never have to do it manually again.
+        </p>
+        <div class="hero-cta-row">
+          <a href="#formatter" class="btn btn-primary">Start Formatting Free</a>
+          <a href="#features" class="btn btn-ghost">Explore Features</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Format Modes</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Browser-Based</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">0</span><span class="stat-label">Setup Required</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 2 · LIVE FORMATTER TOOL
+    ══════════════════════════════════════════ -->
+    <section class="formatter-section" id="formatter" aria-label="Text Formatter Tool">
+      <div class="container">
+        <div class="section-label">↓ The Tool</div>
+        <h2 class="section-title">Text Formatter</h2>
+        <p class="section-sub">Paste your text, choose a format mode, and get clean output instantly.</p>
+
+        <!-- Mode Tabs -->
+        <div class="mode-tabs" role="tablist" aria-label="Formatter modes">
+          <button class="mode-tab active" data-mode="plain" role="tab" aria-selected="true">Plain Text</button>
+          <button class="mode-tab" data-mode="json" role="tab" aria-selected="false">JSON</button>
+          <button class="mode-tab" data-mode="html" role="tab" aria-selected="false">HTML</button>
+          <button class="mode-tab" data-mode="markdown" role="tab" aria-selected="false">Markdown</button>
+          <button class="mode-tab" data-mode="css" role="tab" aria-selected="false">CSS</button>
+          <button class="mode-tab" data-mode="sql" role="tab" aria-selected="false">SQL</button>
+          <button class="mode-tab" data-mode="case" role="tab" aria-selected="false">Case</button>
+          <button class="mode-tab" data-mode="lines" role="tab" aria-selected="false">Lines</button>
+        </div>
+
+        <!-- Sub-options bar -->
+        <div class="sub-options" id="sub-options">
+          <!-- populated by JS per mode -->
+        </div>
+
+        <!-- Editor Area -->
+        <div class="editor-wrap">
+          <div class="editor-pane">
+            <div class="pane-header">
+              <span class="pane-label">Input</span>
+              <div class="pane-actions">
+                <button class="pane-btn" id="paste-btn" title="Paste from clipboard">Paste</button>
+                <button class="pane-btn" id="sample-btn" title="Load a sample">Sample</button>
+                <button class="pane-btn danger" id="clear-input-btn" title="Clear input">Clear</button>
+              </div>
+            </div>
+            <textarea id="input-text" class="code-area" placeholder="Paste or type your text here…" spellcheck="false" aria-label="Input text"></textarea>
+            <div class="pane-footer">
+              <span class="char-count" id="input-count">0 chars · 0 words · 0 lines</span>
+            </div>
+          </div>
+
+          <div class="editor-center">
+            <button class="format-btn" id="format-btn" aria-label="Format text">
+              <span class="format-btn-icon">⇄</span>
+              <span>Format</span>
+            </button>
+            <button class="swap-btn" id="swap-btn" title="Swap input/output" aria-label="Swap input and output">↕</button>
+          </div>
+
+          <div class="editor-pane">
+            <div class="pane-header">
+              <span class="pane-label">Output</span>
+              <div class="pane-actions">
+                <button class="pane-btn" id="copy-btn" title="Copy to clipboard">Copy</button>
+                <button class="pane-btn" id="download-btn" title="Download as file">Download</button>
+                <button class="pane-btn danger" id="clear-output-btn" title="Clear output">Clear</button>
+              </div>
+            </div>
+            <textarea id="output-text" class="code-area" placeholder="Formatted output appears here…" spellcheck="false" readonly aria-label="Formatted output"></textarea>
+            <div class="pane-footer">
+              <span class="char-count" id="output-count">0 chars · 0 words · 0 lines</span>
+              <span class="diff-badge" id="diff-badge"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="notif-bar" id="notif-bar" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 3 · FEATURES
+    ══════════════════════════════════════════ -->
+    <section class="features-section" id="features" aria-label="Features">
+      <div class="container">
+        <div class="section-label">↓ What It Does</div>
+        <h2 class="section-title">Every Format Mode You Need</h2>
+        <p class="section-sub">From code beautification to plain-text cleanup, TextFormatter covers every use case with precision.</p>
+
+        <div class="features-grid">
+          <div class="feature-card" data-anim="fade-up" style="--delay:0ms">
+            <div class="feature-icon">{ }</div>
+            <h3>JSON Formatter</h3>
+            <p>Instantly pretty-print minified JSON with proper indentation, or compact it back into a single line. Validates syntax and highlights errors so you catch them before deployment.</p>
+            <ul class="feature-list">
+              <li>Pretty-print with 2 or 4-space indent</li>
+              <li>Minify / compact mode</li>
+              <li>Inline syntax validation</li>
+            </ul>
+          </div>
+          <div class="feature-card" data-anim="fade-up" style="--delay:80ms">
+            <div class="feature-icon">&lt;/&gt;</div>
+            <h3>HTML Formatter</h3>
+            <p>Beautify raw or minified HTML into properly indented, human-readable markup. Normalises attribute spacing, fixes self-closing tags, and keeps your templates clean.</p>
+            <ul class="feature-list">
+              <li>Consistent tag indentation</li>
+              <li>Attribute normalisation</li>
+              <li>Minify for production</li>
+            </ul>
+          </div>
+          <div class="feature-card" data-anim="fade-up" style="--delay:160ms">
+            <div class="feature-icon">##</div>
+            <h3>Markdown Formatter</h3>
+            <p>Clean up heading levels, fix list indentation, normalise emphasis syntax, and ensure consistent blank-line rules so your Markdown renders predictably everywhere.</p>
+            <ul class="feature-list">
+              <li>Heading &amp; list normalisation</li>
+              <li>Blank-line enforcement</li>
+              <li>Emphasis cleanup</li>
+            </ul>
+          </div>
+          <div class="feature-card" data-anim="fade-up" style="--delay:0ms">
+            <div class="feature-icon">css</div>
+            <h3>CSS Beautifier</h3>
+            <p>Expand minified stylesheets into readable rules, add consistent spacing around properties, and sort declarations alphabetically for a maintainable codebase.</p>
+            <ul class="feature-list">
+              <li>Rule expansion &amp; indentation</li>
+              <li>Property spacing</li>
+              <li>One-property-per-line output</li>
+            </ul>
+          </div>
+          <div class="feature-card" data-anim="fade-up" style="--delay:80ms">
+            <div class="feature-icon">SQL</div>
+            <h3>SQL Formatter</h3>
+            <p>Reformat long SQL queries with keyword capitalisation, clause alignment, and subquery indentation. Makes even the most complex queries readable at a glance.</p>
+            <ul class="feature-list">
+              <li>Keyword capitalisation</li>
+              <li>Clause-level indentation</li>
+              <li>Subquery formatting</li>
+            </ul>
+          </div>
+          <div class="feature-card" data-anim="fade-up" style="--delay:160ms">
+            <div class="feature-icon">Aa</div>
+            <h3>Case Converter</h3>
+            <p>Switch between Title Case, UPPER CASE, lower case, camelCase, PascalCase, snake_case, kebab-case, and Sentence case in one click.</p>
+            <ul class="feature-list">
+              <li>8 case styles</li>
+              <li>Smart title-case rules</li>
+              <li>Batch conversion</li>
+            </ul>
+          </div>
+          <div class="feature-card" data-anim="fade-up" style="--delay:0ms">
+            <div class="feature-icon">¶</div>
+            <h3>Whitespace Cleaner</h3>
+            <p>Strip extra spaces, normalise indentation style (tabs → spaces or vice-versa), remove trailing whitespace, and collapse multiple blank lines into one clean gap.</p>
+            <ul class="feature-list">
+              <li>Trailing whitespace removal</li>
+              <li>Tab ↔ space conversion</li>
+              <li>Blank-line collapse</li>
+            </ul>
+          </div>
+          <div class="feature-card" data-anim="fade-up" style="--delay:80ms">
+            <div class="feature-icon">≡</div>
+            <h3>Line Tools</h3>
+            <p>Sort lines alphabetically or by length, remove duplicates, reverse order, number each line, shuffle randomly, or filter lines matching a search term.</p>
+            <ul class="feature-list">
+              <li>Sort, reverse, shuffle</li>
+              <li>Deduplicate lines</li>
+              <li>Line numbering</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 4 · HOW IT WORKS
+    ══════════════════════════════════════════ -->
+    <section class="how-section" id="how-it-works" aria-label="How It Works">
+      <div class="container">
+        <div class="section-label">↓ The Process</div>
+        <h2 class="section-title">How TextFormatter Works</h2>
+        <p class="section-sub">Three steps from messy input to clean, production-ready text.</p>
+        <div class="steps-row">
+          <div class="step" data-anim="fade-up" style="--delay:0ms">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <h3>Paste Your Text</h3>
+              <p>Copy raw, minified, or chaotic text from anywhere—an API response, a colleague's file, a database dump, a document export—and paste it directly into the input panel. No preprocessing needed.</p>
+            </div>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step" data-anim="fade-up" style="--delay:100ms">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <h3>Choose a Format Mode</h3>
+              <p>Select the mode that matches your content type—JSON, HTML, Markdown, CSS, SQL, or plain text. Fine-tune with sub-options like indent size, case style, or line sort order.</p>
+            </div>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step" data-anim="fade-up" style="--delay:200ms">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <h3>Copy Clean Output</h3>
+              <p>Hit Format and your restructured text appears instantly in the output panel. Copy it to your clipboard or download it as a file—ready to paste straight into your project.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 5 · USE CASES
+    ══════════════════════════════════════════ -->
+    <section class="usecases-section" id="use-cases" aria-label="Use Cases">
+      <div class="container">
+        <div class="section-label">↓ Who Uses It</div>
+        <h2 class="section-title">Built for Every Kind of Text Worker</h2>
+        <p class="section-sub">TextFormatter removes formatting friction from every role that works with text.</p>
+        <div class="usecases-grid">
+          <article class="usecase-card" data-anim="fade-up" style="--delay:0ms">
+            <div class="uc-icon">👩‍💻</div>
+            <h3>Developers</h3>
+            <p>Beautify API responses, format configuration files, clean up minified code during debugging, and standardise indentation across team codebases. Spend zero time on manual formatting—focus on logic instead.</p>
+          </article>
+          <article class="usecase-card" data-anim="fade-up" style="--delay:80ms">
+            <div class="uc-icon">✍️</div>
+            <h3>Content Writers</h3>
+            <p>Fix inconsistent capitalisation in bulk, clean up copy-pasted text from PDFs that arrives with broken spacing, convert heading styles, and prepare clean Markdown for CMS publishing.</p>
+          </article>
+          <article class="usecase-card" data-anim="fade-up" style="--delay:160ms">
+            <div class="uc-icon">📊</div>
+            <h3>Data Analysts</h3>
+            <p>Normalise SQL query formatting for readability, clean exported CSV text columns, sort and deduplicate identifier lists, and standardise naming conventions across datasets.</p>
+          </article>
+          <article class="usecase-card" data-anim="fade-up" style="--delay:240ms">
+            <div class="uc-icon">🎓</div>
+            <h3>Students & Educators</h3>
+            <p>Format assignment code to meet submission style guides, clean up research notes, convert between citation styles, and ensure consistent text formatting across shared documents.</p>
+          </article>
+          <article class="usecase-card" data-anim="fade-up" style="--delay:0ms">
+            <div class="uc-icon">🖥️</div>
+            <h3>Technical Writers</h3>
+            <p>Ensure consistent Markdown across documentation pages, format code samples embedded in docs, fix heading hierarchies, and maintain style consistency across large documentation sets.</p>
+          </article>
+          <article class="usecase-card" data-anim="fade-up" style="--delay:80ms">
+            <div class="uc-icon">⚙️</div>
+            <h3>DevOps Engineers</h3>
+            <p>Format JSON configuration payloads from CI/CD pipelines, validate and beautify Kubernetes manifests, clean up log output for readability, and normalise environment variable lists.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 6 · WHY TEXT FORMATTING MATTERS
+    ══════════════════════════════════════════ -->
+    <section class="about-section" id="about" aria-label="Why text formatting matters">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text" data-anim="fade-right">
+            <div class="section-label">↓ The Why</div>
+            <h2 class="section-title left">Why Consistent Text Formatting Matters</h2>
+            <p>Raw or inconsistently formatted text creates friction at every stage of a workflow. A developer staring at minified JSON spends cognitive energy parsing structure instead of understanding data. A content manager receiving copy with random capitalisation wastes time on fixes before publication. Poorly indented code reviews slow teams down and introduce review errors.</p>
+            <p>A text formatter eliminates this friction by acting as an automatic style enforcer. It applies a consistent set of rules—indentation depth, spacing around delimiters, line-break placement, capitalisation convention—across the entire input in milliseconds. The result is text that communicates structure visually, reduces reading effort, and arrives in every downstream system exactly the way that system expects it.</p>
+            <p>TextFormatter brings these capabilities together in one browser-based tool with zero setup. Every formatting operation runs locally in your browser, meaning your text never leaves your device.</p>
+          </div>
+          <div class="about-visual" data-anim="fade-left">
+            <div class="compare-block">
+              <div class="compare-pane bad">
+                <div class="compare-label bad-label">✗ Before</div>
+                <pre class="compare-code">{"name":"Alice","age":30,"skills":["js","py","sql"],"active":true}</pre>
+              </div>
+              <div class="compare-arrow-v">↓</div>
+              <div class="compare-pane good">
+                <div class="compare-label good-label">✓ After</div>
+                <pre class="compare-code">{
+  "name": "Alice",
+  "age": 30,
+  "skills": [
+    "js",
+    "py",
+    "sql"
+  ],
+  "active": true
+}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 7 · FAQ
+    ══════════════════════════════════════════ -->
+    <section class="faq-section" id="faq" aria-label="Frequently Asked Questions">
+      <div class="container">
+        <div class="section-label">↓ Common Questions</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">Everything you need to know about TextFormatter.</p>
+        <div class="faq-grid">
+          <div class="faq-item" data-anim="fade-up" style="--delay:0ms">
+            <button class="faq-q" aria-expanded="false">What exactly does a text formatter do?</button>
+            <div class="faq-a">
+              <p>A text formatter automatically restructures raw or messy text so it follows consistent styling, indentation, and syntax rules. It instantly transforms your input into a clean, readable version without you having to manually fix the spacing or alignment. Think of it as autopilot for text tidiness.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-anim="fade-up" style="--delay:60ms">
+            <button class="faq-q" aria-expanded="false">Does TextFormatter store or send my text anywhere?</button>
+            <div class="faq-a">
+              <p>No. All formatting is performed entirely in your browser using JavaScript. Your text never leaves your device and is never transmitted to any server. This makes TextFormatter safe for confidential data, source code, and sensitive business documents.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-anim="fade-up" style="--delay:120ms">
+            <button class="faq-q" aria-expanded="false">What's the difference between JSON minify and JSON pretty-print?</button>
+            <div class="faq-a">
+              <p>Pretty-printing adds whitespace—newlines and indentation—to make JSON human-readable. Minifying strips all unnecessary whitespace to produce the smallest possible file size, which is ideal for production API responses or transmitted payloads. TextFormatter supports both directions instantly.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-anim="fade-up" style="--delay:0ms">
+            <button class="faq-q" aria-expanded="false">Can I format code that has syntax errors?</button>
+            <div class="faq-a">
+              <p>For structured formats like JSON and XML, TextFormatter validates syntax before formatting. If errors are detected, it highlights the issue with an inline message so you can fix it first. For plain text, HTML, and Markdown, formatting proceeds even when the content isn't strictly valid.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-anim="fade-up" style="--delay:60ms">
+            <button class="faq-q" aria-expanded="false">Is there a limit to how much text I can format?</button>
+            <div class="faq-a">
+              <p>TextFormatter runs entirely in the browser, so practical limits depend on your device's memory. Most modern computers handle hundreds of thousands of characters without issue. There's no artificial character cap—paste away.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-anim="fade-up" style="--delay:120ms">
+            <button class="faq-q" aria-expanded="false">What case conversion styles are supported?</button>
+            <div class="faq-a">
+              <p>The Case Converter supports: Sentence case, lowercase, UPPERCASE, Title Case, camelCase, PascalCase, snake_case, and kebab-case. Title Case uses smart rules that keep short prepositions and articles lowercase when they are not the first word.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-anim="fade-up" style="--delay:0ms">
+            <button class="faq-q" aria-expanded="false">How does the SQL formatter handle complex queries?</button>
+            <div class="faq-a">
+              <p>The SQL formatter identifies major clauses (SELECT, FROM, WHERE, JOIN, GROUP BY, ORDER BY, HAVING) and places each on a new line with consistent indentation. Keywords are capitalised and subqueries are indented relative to their parent query for clarity.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-anim="fade-up" style="--delay:60ms">
+            <button class="faq-q" aria-expanded="false">Can I use TextFormatter on mobile?</button>
+            <div class="faq-a">
+              <p>Yes. TextFormatter is fully responsive and works on smartphones and tablets. The editor layout adapts to vertical stacking on narrow screens, and all touch interactions—tapping tabs, buttons, and copy—work as expected.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 8 · TIPS & GUIDE
+    ══════════════════════════════════════════ -->
+    <section class="tips-section" id="tips" aria-label="Formatting Tips">
+      <div class="container">
+        <div class="section-label">↓ Learn More</div>
+        <h2 class="section-title">Text Formatting Best Practices</h2>
+        <p class="section-sub">Get the most out of TextFormatter with these tips and guidelines.</p>
+        <div class="tips-grid">
+          <article class="tip-card" data-anim="fade-up" style="--delay:0ms">
+            <div class="tip-num">01</div>
+            <h3>Always Validate Before Formatting</h3>
+            <p>For JSON and XML, validation catches syntax errors like missing commas or unclosed brackets before they cause issues. Use the JSON mode's built-in validation to fix errors first, then format for readability.</p>
+          </article>
+          <article class="tip-card" data-anim="fade-up" style="--delay:80ms">
+            <div class="tip-num">02</div>
+            <h3>Use Consistent Indentation Across a Project</h3>
+            <p>Pick either 2-space or 4-space indentation and stick with it across every file in a project. TextFormatter's indent-size setting lets you enforce this standard whenever you receive files with inconsistent spacing.</p>
+          </article>
+          <article class="tip-card" data-anim="fade-up" style="--delay:160ms">
+            <div class="tip-num">03</div>
+            <h3>Minify for Production, Beautify for Development</h3>
+            <p>Keep your working files in pretty-printed format for readability during development, then minify before shipping to production. Minified files reduce payload size and improve page load performance.</p>
+          </article>
+          <article class="tip-card" data-anim="fade-up" style="--delay:240ms">
+            <div class="tip-num">04</div>
+            <h3>Clean Text Before Importing Into Databases</h3>
+            <p>Use the whitespace cleaner to strip leading/trailing spaces and normalise line endings before importing text into database fields. This prevents hidden whitespace from causing mismatched lookups or display issues.</p>
+          </article>
+          <article class="tip-card" data-anim="fade-up" style="--delay:0ms">
+            <div class="tip-num">05</div>
+            <h3>Sort Lines to Find Duplicates Quickly</h3>
+            <p>When working with large lists of identifiers, email addresses, or keywords, use Sort Lines followed by Remove Duplicates. Alphabetical sorting brings duplicates together, making them easy to spot and remove.</p>
+          </article>
+          <article class="tip-card" data-anim="fade-up" style="--delay:80ms">
+            <div class="tip-num">06</div>
+            <h3>Apply Case Conventions Consistently</h3>
+            <p>For coding projects, use snake_case or camelCase converters to batch-rename variable lists. For publishing, run Title Case on headlines after drafting to ensure consistent capitalisation without remembering rules manually.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 9 · CTA BANNER
+    ══════════════════════════════════════════ -->
+    <section class="cta-section" aria-label="Call to action">
+      <div class="container">
+        <div class="cta-inner" data-anim="fade-up">
+          <div class="cta-decoration">✦</div>
+          <h2>Start Formatting Your Text Right Now</h2>
+          <p>No account. No installation. No limits. Just paste your text and get clean, consistent output in seconds.</p>
+          <a href="#formatter" class="btn btn-primary btn-lg">Open Text Formatter</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer injected by footer.js -->
+  <div id="footer-root"></div>
+
+  <script src="header.js"></script>
+  <script src="footer.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
