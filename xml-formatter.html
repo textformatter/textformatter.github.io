@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>XML Formatter – Beautify, Minify & Validate XML Online | TextFormatter</title>
+  <meta name="description" content="Free online XML formatter. Instantly beautify minified XML with proper indentation, minify for production, and validate XML syntax in the browser. No signup required."/>
+  <meta name="keywords" content="xml formatter, xml beautifier, xml validator online, pretty print xml, minify xml, format xml online, xml indentation tool, xml syntax checker, xml pretty printer"/>
+  <meta name="author" content="TextFormatter"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://textformatter.github.io/xml-formatter"/>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="XML Formatter – Beautify, Minify & Validate XML Online"/>
+  <meta property="og:description" content="Pretty-print or minify XML instantly in your browser. Includes syntax validation and configurable indentation."/>
+  <meta property="og:url" content="https://textformatter.github.io/xml-formatter"/>
+  <meta property="og:site_name" content="TextFormatter"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="XML Formatter – Free Online XML Beautifier & Validator"/>
+  <meta name="twitter:description" content="Format, validate, and minify XML instantly. Free browser-based tool with configurable indent."/>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "XML Formatter",
+    "url": "https://textformatter.github.io/xml-formatter",
+    "description": "Free online tool to beautify, minify, and validate XML. Supports configurable indentation and inline syntax error reporting.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is XML formatting?","acceptedAnswer":{"@type":"Answer","text":"XML formatting (or pretty-printing) restructures XML markup with consistent indentation and line breaks so human readers can understand the tag hierarchy and data structure at a glance. Minifying does the opposite, removing all whitespace to reduce file size."}},
+      {"@type":"Question","name":"Does the XML formatter validate my code?","acceptedAnswer":{"@type":"Answer","text":"Yes. The formatter uses the browser's built-in XML parser to detect syntax errors such as unclosed tags, mismatched tag names, illegal characters, and malformed attributes. If an error is found, the exact issue is reported before formatting proceeds."}},
+      {"@type":"Question","name":"What indentation options are available?","acceptedAnswer":{"@type":"Answer","text":"You can choose between 2-space, 4-space, or tab indentation for the beautified output. The setting persists within your session so you don't need to change it each time."}},
+      {"@type":"Question","name":"Can I use this tool for XHTML and SVG files?","acceptedAnswer":{"@type":"Answer","text":"Yes. XHTML and SVG are both valid XML dialects and are fully supported. The formatter processes any well-formed XML regardless of the vocabulary used."}}
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="tools.css"/>
+  <style>
+    .xml-modes {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;
+    }
+    .xml-mode-btn {
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 600;
+      border: 1.5px solid var(--ivory-3);
+      background: var(--ivory);
+      color: var(--ink-3);
+      transition: all var(--transition);
+    }
+    .xml-mode-btn:hover { border-color: var(--ink-3); color: var(--ink); }
+    .xml-mode-btn.active { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+    .xml-options-bar {
+      display: flex; align-items: center; gap: 16px;
+      padding: 12px 16px;
+      background: var(--ivory);
+      border: 1px solid var(--ivory-3);
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .xml-opt-label {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--ink-3);
+    }
+    .xml-indent-group { display: flex; gap: 6px; }
+    .xml-indent-btn {
+      padding: 5px 13px;
+      border-radius: 50px;
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      font-weight: 600;
+      border: 1.5px solid var(--ivory-3);
+      background: var(--ivory);
+      color: var(--ink-3);
+      transition: all var(--transition);
+    }
+    .xml-indent-btn.active { background: var(--sage-pale); color: var(--sage); border-color: var(--sage); }
+    .xml-validate-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: .75rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+    }
+    .xml-validate-badge.valid { background: var(--sage-pale); color: var(--sage); }
+    .xml-validate-badge.invalid { background: var(--red-pale); color: var(--red-soft); }
+    .xml-validate-badge.idle { background: var(--ivory-2); color: var(--ink-3); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media(max-width:700px){ .two-col{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<div id="header-root"></div>
+
+<main>
+
+  <!-- ── HERO ── -->
+  <section class="tool-hero" aria-label="XML Formatter">
+    <div class="container tool-hero-inner">
+      <div class="tool-badge">✦ XML Formatter &amp; Validator</div>
+      <h1>Beautify, Minify &amp; <em>Validate XML</em> Instantly</h1>
+      <p>Pretty-print minified XML with proper indentation, compact it back for production, and catch syntax errors before they reach your systems. All in the browser, no uploads required.</p>
+    </div>
+  </section>
+
+  <!-- ── TOOL APP ── -->
+  <section class="tool-app-section" id="tool" aria-label="XML Formatter Tool">
+    <div class="container">
+
+      <!-- Mode & Options -->
+      <div class="xml-modes" role="group" aria-label="Formatter mode">
+        <button class="xml-mode-btn active" data-mode="beautify">✦ Beautify</button>
+        <button class="xml-mode-btn" data-mode="minify">⟨/⟩ Minify</button>
+        <button class="xml-mode-btn" data-mode="validate">✓ Validate Only</button>
+      </div>
+      <div class="xml-options-bar" id="indent-bar">
+        <span class="xml-opt-label">Indent:</span>
+        <div class="xml-indent-group">
+          <button class="xml-indent-btn active" data-indent="2">2 spaces</button>
+          <button class="xml-indent-btn" data-indent="4">4 spaces</button>
+          <button class="xml-indent-btn" data-indent="tab">tab</button>
+        </div>
+        <span class="xml-validate-badge idle" id="xml-valid-badge">● Not validated</span>
+      </div>
+
+      <!-- Two-column layout -->
+      <div class="two-col">
+        <!-- Input -->
+        <div>
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <span class="tool-card-title">XML Input</span>
+              <div class="tool-card-actions">
+                <button class="act-btn" id="xml-paste">Paste</button>
+                <button class="act-btn" id="xml-sample">Sample</button>
+                <button class="act-btn danger" id="xml-clear">Clear</button>
+              </div>
+            </div>
+            <textarea class="tool-textarea" id="xml-input" placeholder="Paste your XML here…" rows="16" spellcheck="false" aria-label="XML input"></textarea>
+            <div class="tool-footer-bar">
+              <span class="tool-stat" id="xml-in-stat">0 chars · 0 lines</span>
+            </div>
+          </div>
+        </div>
+        <!-- Output -->
+        <div>
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <span class="tool-card-title">Output</span>
+              <div class="tool-card-actions">
+                <button class="act-btn" id="xml-copy">Copy</button>
+                <button class="act-btn" id="xml-download">Download</button>
+                <button class="act-btn danger" id="xml-clear-out">Clear</button>
+              </div>
+            </div>
+            <textarea class="tool-textarea output-area" id="xml-output" placeholder="Formatted XML appears here…" rows="16" readonly spellcheck="false" aria-label="XML output"></textarea>
+            <div class="tool-footer-bar">
+              <span class="tool-stat" id="xml-out-stat">0 chars · 0 lines</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Format button -->
+      <div style="display:flex;justify-content:center;margin:22px 0 4px;">
+        <button class="act-btn primary" id="xml-format-btn" style="padding:13px 48px;font-size:1rem;">
+          Format XML ⇄
+        </button>
+      </div>
+
+      <div class="tool-notif" id="xml-notif" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ── HOW TO ── -->
+  <section class="howto-section" aria-label="How to use XML Formatter">
+    <div class="container">
+      <div class="section-label">↓ Step by Step</div>
+      <h2 class="section-title">How to Use the XML Formatter</h2>
+      <div class="howto-steps">
+        <div class="howto-step">
+          <div class="howto-num">1</div>
+          <div class="howto-body">
+            <h3>Paste Your XML</h3>
+            <p>Copy XML from an API response, a configuration file, an RSS feed, a SOAP payload, or any XML document and paste it into the Input panel. You can also click <strong>Sample</strong> to load demonstration XML with nested elements, attributes, and comments.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="howto-num">2</div>
+          <div class="howto-body">
+            <h3>Choose Beautify, Minify, or Validate</h3>
+            <p><strong>Beautify</strong> adds indentation and line breaks to make XML human-readable. <strong>Minify</strong> strips all unnecessary whitespace to produce the smallest possible output for production systems. <strong>Validate Only</strong> checks syntax and reports errors without reformatting.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="howto-num">3</div>
+          <div class="howto-body">
+            <h3>Set Indentation (Beautify mode)</h3>
+            <p>Choose between 2-space, 4-space, or tab indentation using the option bar. The setting applies to all nested XML elements and attributes in the output. 2-space is compact and common in web projects; 4-space is preferred in many enterprise XML schemas.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="howto-num">4</div>
+          <div class="howto-body">
+            <h3>Format, Check the Validation Badge, &amp; Copy</h3>
+            <p>Click <strong>Format XML</strong>. The validation badge turns green for valid XML or red with an error description for invalid XML. Copy or download the formatted output. If validation fails, the error message tells you exactly what went wrong so you can fix it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DESCRIPTION ── -->
+  <section class="desc-section" aria-label="About XML Formatter">
+    <div class="container">
+      <div class="section-label">↓ About This Tool</div>
+      <h2 class="section-title">Why Format &amp; Validate Your XML?</h2>
+      <p class="section-sub">XML is verbose by nature. Consistent formatting makes it readable. Validation keeps it functional. Both matter.</p>
+      <div class="desc-grid">
+        <div class="desc-card">
+          <div class="desc-card-icon">🔬</div>
+          <h3>Syntax Validation</h3>
+          <p>XML has strict syntax rules. A single unclosed tag, an unescaped ampersand, or a mismatched element name breaks the entire document. The formatter uses the browser's native XML parser to catch these errors before you deploy or transmit the file, saving hours of debugging.</p>
+        </div>
+        <div class="desc-card">
+          <div class="desc-card-icon">🏗️</div>
+          <h3>Indentation &amp; Hierarchy</h3>
+          <p>Pretty-printed XML reflects the nesting structure visually. Each child element is indented relative to its parent, making it immediately obvious which elements contain which data. This is essential when reviewing API schemas, configuration files, and data interchange formats.</p>
+        </div>
+        <div class="desc-card">
+          <div class="desc-card-icon">🚀</div>
+          <h3>Minification for Production</h3>
+          <p>Every whitespace character in an XML document adds to file size and transmission time. For high-frequency API calls, embedded devices, or bandwidth-sensitive environments, minified XML reduces payload size significantly. One click converts your readable working copy to a compact production version.</p>
+        </div>
+        <div class="desc-card">
+          <div class="desc-card-icon">📡</div>
+          <h3>API &amp; SOAP Support</h3>
+          <p>REST APIs, SOAP web services, RSS/Atom feeds, and many enterprise data exchange systems return XML payloads. The formatter handles all of these, preserving namespace declarations, CDATA sections, processing instructions, and XML comments through formatting.</p>
+        </div>
+        <div class="desc-card">
+          <div class="desc-card-icon">🖼️</div>
+          <h3>XHTML &amp; SVG Compatible</h3>
+          <p>XHTML and SVG are XML vocabularies and are fully supported. Format SVG artwork from design tools, beautify XHTML templates from legacy systems, or clean up Atom feed markup—the formatter handles any well-formed XML document regardless of its element vocabulary.</p>
+        </div>
+        <div class="desc-card">
+          <div class="desc-card-icon">🔒</div>
+          <h3>No Server Upload</h3>
+          <p>XML files often carry confidential data—user records, financial transactions, or internal configuration values. This formatter processes everything in the browser. No file is sent to a server. Your XML stays on your device, making this tool safe for proprietary and regulated data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="tool-faq-section" aria-label="XML Formatter FAQ">
+    <div class="container">
+      <div class="section-label">↓ Common Questions</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="tool-faq-list">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What is the difference between XML and HTML formatting?</button>
+          <div class="faq-a"><p>HTML is forgiving—browsers try to parse invalid HTML by guessing what the author intended. XML is strict—a single syntax error makes the document invalid and unparseable. An XML formatter must therefore validate before formatting, while an HTML formatter can work with imperfect markup. This tool uses a strict parser for XML and reports the exact error and location when the input is not well-formed.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Does the formatter preserve XML comments and CDATA sections?</button>
+          <div class="faq-a"><p>Yes. XML comments (<code>&lt;!-- ... --&gt;</code>) and CDATA sections (<code>&lt;![CDATA[ ... ]]&gt;</code>) are preserved in the output. In Beautify mode, comments are indented consistently with surrounding elements. In Minify mode, comments are stripped to reduce file size (CDATA content is preserved as it may be functionally significant).</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Why is my XML showing as invalid even though it looks correct?</button>
+          <div class="faq-a"><p>Common causes include: unescaped special characters (use <code>&amp;amp;</code> for &amp;, <code>&amp;lt;</code> for &lt;, <code>&amp;gt;</code> for &gt;), a missing XML declaration, multiple root elements (XML requires exactly one root), attribute values not enclosed in quotes, or a namespace prefix used without being declared. The error message from the validator will point to the specific location of the problem.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Can I format XML from a REST API response?</button>
+          <div class="faq-a"><p>Yes. Copy the raw XML body from your API response (from a browser DevTools network panel, Postman, curl output, or any other API client), paste it into the input field, and click Format XML. The tool will validate and pretty-print it instantly, making it easy to inspect the structure and data.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Is there a file size limit?</button>
+          <div class="faq-a"><p>There is no enforced limit. Processing happens in the browser using JavaScript and the native XML parser, so the practical limit is your device's available memory. Large XML files (several megabytes) are handled well by modern browsers. Very large files (50MB+) may benefit from being split before formatting.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What indentation style should I use?</button>
+          <div class="faq-a"><p>The choice is mostly a matter of team convention or project standard. Two-space indentation is compact and common in web development. Four-space is the default in many enterprise Java and .NET XML schemas. Tab indentation lets readers adjust the visual width in their editor. If no standard exists, two-space is a sensible default for XML that will be read in a browser or code editor.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="tool-cta-section" aria-label="Try other tools">
+    <div class="container">
+      <div class="tool-cta-inner">
+        <h2>Need More Text Tools?</h2>
+        <p>Case Converter, Word Replacer, Random Text Generator, and the full Text Formatter—all free in your browser.</p>
+        <a href="/" class="act-btn primary">Explore All Tools</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-root"></div>
+
+<script src="header.js"></script>
+<script src="footer.js"></script>
+<script>
+/* ── XML FORMATTER APP ── */
+(function(){
+  const inputEl  = document.getElementById('xml-input');
+  const outputEl = document.getElementById('xml-output');
+  const inStat   = document.getElementById('xml-in-stat');
+  const outStat  = document.getElementById('xml-out-stat');
+  const notif    = document.getElementById('xml-notif');
+  const badge    = document.getElementById('xml-valid-badge');
+
+  let mode   = 'beautify';
+  let indent = '  '; // 2 spaces
+
+  const SAMPLE = `<?xml version="1.0" encoding="UTF-8"?><bookstore><book category="fiction"><title lang="en">The Great Gatsby</title><author>F. Scott Fitzgerald</author><year>1925</year><price>12.99</price></book><book category="non-fiction"><title lang="en">Thinking, Fast and Slow</title><author>Daniel Kahneman</author><year>2011</year><price>15.49</price></book></bookstore>`;
+
+  // Mode buttons
+  document.querySelectorAll('.xml-mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.xml-mode-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      mode = btn.dataset.mode;
+      document.getElementById('indent-bar').style.opacity = mode === 'beautify' ? '1' : '.5';
+    });
+  });
+
+  // Indent buttons
+  document.querySelectorAll('.xml-indent-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.xml-indent-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const v = btn.dataset.indent;
+      indent = v === 'tab' ? '\t' : (v === '4' ? '    ' : '  ');
+    });
+  });
+
+  function statLine(t) {
+    const lines = t.split('\n').length;
+    return `${t.length.toLocaleString()} chars · ${lines.toLocaleString()} line${lines !== 1 ? 's' : ''}`;
+  }
+
+  inputEl.addEventListener('input', () => { inStat.textContent = statLine(inputEl.value); });
+
+  function validateXML(str) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(str, 'application/xml');
+    const err = doc.querySelector('parsererror');
+    return err ? { valid: false, msg: err.textContent.split('\n')[0].trim() } : { valid: true, doc };
+  }
+
+  function beautify(node, depth) {
+    const pad = indent.repeat(depth);
+    if (node.nodeType === 3) { // text
+      const t = node.textContent.trim();
+      return t ? pad + t : '';
+    }
+    if (node.nodeType === 8) { // comment
+      return `${pad}<!--${node.textContent}-->`;
+    }
+    if (node.nodeType === 4) { // CDATA
+      return `${pad}<![CDATA[${node.textContent}]]>`;
+    }
+    if (node.nodeType === 7) { // processing instruction
+      return `${pad}<?${node.target} ${node.data}?>`;
+    }
+    if (node.nodeType !== 1) return ''; // element only beyond here
+
+    const tagName = node.tagName;
+    let attrs = '';
+    for (const a of node.attributes) {
+      attrs += ` ${a.name}="${a.value}"`;
+    }
+
+    const children = Array.from(node.childNodes)
+      .map(c => beautify(c, depth + 1))
+      .filter(s => s.trim() !== '');
+
+    if (children.length === 0) return `${pad}<${tagName}${attrs}/>`;
+
+    const singleText = children.length === 1 && !children[0].includes('<');
+    if (singleText) return `${pad}<${tagName}${attrs}>${children[0].trim()}</${tagName}>`;
+
+    return `${pad}<${tagName}${attrs}>\n${children.join('\n')}\n${pad}</${tagName}>`;
+  }
+
+  function minify(str) {
+    return str.replace(/>\s+</g, '><').replace(/\s{2,}/g, ' ').replace(/<!--[\s\S]*?-->/g, '').trim();
+  }
+
+  document.getElementById('xml-format-btn').addEventListener('click', () => {
+    const text = inputEl.value.trim();
+    if (!text) { showNotif('Please paste some XML first.', 'error'); return; }
+
+    const { valid, msg, doc } = validateXML(text);
+
+    if (!valid) {
+      badge.textContent = '✗ Invalid XML';
+      badge.className = 'xml-validate-badge invalid';
+      showNotif('XML Error: ' + msg, 'error');
+      return;
+    }
+
+    badge.textContent = '✓ Valid XML';
+    badge.className = 'xml-validate-badge valid';
+
+    if (mode === 'validate') {
+      outputEl.value = text;
+      outStat.textContent = statLine(text);
+      showNotif('XML is valid — no syntax errors found.', 'success');
+      return;
+    }
+
+    if (mode === 'minify') {
+      const result = minify(text);
+      outputEl.value = result;
+      outStat.textContent = statLine(result);
+      showNotif('XML minified successfully.', 'success');
+      return;
+    }
+
+    // Beautify
+    let result = '';
+    const xmlDecl = text.match(/^<\?xml[^?]*\?>/i);
+    if (xmlDecl) result += xmlDecl[0] + '\n';
+
+    const children = Array.from(doc.childNodes);
+    result += children
+      .filter(n => n.nodeType !== 7 || n.target !== 'xml')
+      .map(n => beautify(n, 0))
+      .filter(s => s.trim())
+      .join('\n');
+
+    outputEl.value = result;
+    outStat.textContent = statLine(result);
+    showNotif('XML beautified successfully.', 'success');
+  });
+
+  document.getElementById('xml-paste').addEventListener('click', async () => {
+    try { inputEl.value = await navigator.clipboard.readText(); inStat.textContent = statLine(inputEl.value); } catch { showNotif('Clipboard access denied.','error'); }
+  });
+  document.getElementById('xml-sample').addEventListener('click', () => { inputEl.value = SAMPLE; inStat.textContent = statLine(SAMPLE); badge.textContent = '● Not validated'; badge.className = 'xml-validate-badge idle'; });
+  document.getElementById('xml-clear').addEventListener('click', () => { inputEl.value = ''; inStat.textContent = '0 chars · 0 lines'; badge.textContent = '● Not validated'; badge.className = 'xml-validate-badge idle'; });
+  document.getElementById('xml-copy').addEventListener('click', () => {
+    if (!outputEl.value) return;
+    navigator.clipboard.writeText(outputEl.value).then(() => showNotif('Copied to clipboard!', 'success'));
+  });
+  document.getElementById('xml-clear-out').addEventListener('click', () => { outputEl.value = ''; outStat.textContent = '0 chars · 0 lines'; });
+  document.getElementById('xml-download').addEventListener('click', () => {
+    if (!outputEl.value) return;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([outputEl.value], {type:'application/xml'}));
+    a.download = 'formatted.xml'; a.click();
+  });
+
+  function showNotif(msg, type) {
+    notif.textContent = msg;
+    notif.className = 'tool-notif ' + type;
+    clearTimeout(notif._t);
+    notif._t = setTimeout(() => { notif.textContent = ''; notif.className = 'tool-notif'; }, 4000);
+  }
+
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const a = btn.nextElementSibling;
+      const open = a.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+})();
+</script>
+</body>
+</html>
