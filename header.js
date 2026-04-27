@@ -10,14 +10,14 @@
   const headerHTML = `
     <header class="site-header" id="site-header">
       <div class="container header-inner">
-        <a href="#home" class="header-logo">
+        <a href="/" class="header-logo">
           <div class="logo-mark">T×F</div>
           <span>TextFormatter</span>
         </a>
         
         <nav class="header-nav" aria-label="Main navigation">
-          <a href="#home" class="nav-link">Home</a>
-          <a href="#formatter" class="nav-link">Formatter</a>
+          <a href="/" class="nav-link">Home</a>
+          <a href="/#formatter" class="nav-link">Formatter</a>
           <a href="#features" class="nav-link">Features</a>
           <a href="#how-it-works" class="nav-link">How It Works</a>
           <a href="#use-cases" class="nav-link">Use Cases</a>
