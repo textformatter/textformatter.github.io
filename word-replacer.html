@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RZR1D3TJ6Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RZR1D3TJ6Y');
+</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Word Replacer – Find and Replace Words in Text Online | TextFormatter</title>
+  <meta name="description" content="Free online word replacer tool. Find and replace single words, phrases, or patterns in any text. Supports case-sensitive search, whole-word matching, and regex replacement. No signup needed."/>
+  <meta name="keywords" content="word replacer, find and replace text, text replace tool, online find replace, bulk word replace, regex replace, text substitution tool, replace words online"/>
+  <meta name="author" content="TextFormatter"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://textformatter.github.io/word-replacer"/>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Word Replacer – Find and Replace Words in Text Online"/>
+  <meta property="og:description" content="Instantly find and replace words or phrases in text. Supports case-sensitive search, whole-word mode, and regex patterns."/>
+  <meta property="og:url" content="https://textformatter.github.io/word-replacer"/>
+  <meta property="og:site_name" content="TextFormatter"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Word Replacer – Online Find & Replace Tool"/>
+  <meta name="twitter:description" content="Find and replace words, phrases, or regex patterns in any text. Free, instant, browser-based."/>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Word Replacer",
+    "url": "https://textformatter.github.io/word-replacer",
+    "description": "Free online find and replace tool. Replace single words, phrases, or regex patterns across any text with full case-sensitivity and whole-word matching options.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is a word replacer tool?","acceptedAnswer":{"@type":"Answer","text":"A word replacer is an online tool that scans a block of text and substitutes every occurrence of a search term with a replacement string. It saves time compared to manually scanning and editing text, especially for large documents."}},
+      {"@type":"Question","name":"Can I replace all occurrences at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. By default the word replacer replaces every occurrence of the search term in the text. You can also use the Replace One button to step through matches one at a time."}},
+      {"@type":"Question","name":"Does the word replacer support regular expressions?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enable the Regex mode toggle and the search field accepts standard JavaScript regular expressions. This allows complex pattern matching such as replacing multiple words with one rule."}},
+      {"@type":"Question","name":"What does whole-word matching mean?","acceptedAnswer":{"@type":"Answer","text":"Whole-word matching ensures the search term only matches when surrounded by word boundaries. For example, searching for 'cat' with whole-word mode on will not match 'concatenate' or 'scatter', only the standalone word 'cat'."}}
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="tools.css"/>
+  <style>
+    .wr-controls {
+      background: var(--white);
+      border: 1px solid var(--ivory-3);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-top: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .wr-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .wr-field label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--ink-3);
+      font-family: var(--font-mono);
+      margin-bottom: 6px;
+    }
+    .wr-field input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--ivory-3);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: .88rem;
+      color: var(--ink);
+      background: var(--ivory);
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .wr-field input:focus { border-color: var(--sage); }
+    .wr-options {
+      display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+      padding: 12px 0 0;
+      border-top: 1px solid var(--ivory-3);
+    }
+    .wr-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+    .wr-toggle input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--sage); cursor: pointer; }
+    .wr-toggle span { font-size: .85rem; font-weight: 500; color: var(--ink-2); }
+    .match-count {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      padding: 4px 10px;
+      background: var(--sage-pale);
+      color: var(--sage);
+      border-radius: 50px;
+      font-weight: 600;
+    }
+    .match-count.zero { background: var(--ivory-2); color: var(--ink-3); }
+    .wr-btn-row { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+    .history-section { margin-top: 24px; }
+    .history-title {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--ink-3);
+      margin-bottom: 10px;
+    }
+    .history-list { display: flex; flex-direction: column; gap: 6px; max-height: 180px; overflow-y: auto; }
+    .history-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 12px;
+      background: var(--ivory);
+      border: 1px solid var(--ivory-3);
+      border-radius: var(--radius-sm);
+      font-size: .82rem;
+      font-family: var(--font-mono);
+      color: var(--ink-2);
+    }
+    .history-item .arr { color: var(--sage); font-weight: 700; }
+    @media(max-width:600px){ .wr-row{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<div id="header-root"></div>
+
+<main>
+
+  <!-- ── HERO ── -->
+  <section class="tool-hero" aria-label="Word Replacer">
+    <div class="container tool-hero-inner">
+      <div class="tool-badge">✦ Find &amp; Replace Tool</div>
+      <h1>Replace Words &amp; Phrases <em>Across Any Text</em></h1>
+      <p>Instantly find and substitute any word, phrase, or pattern in your text. Supports case-sensitive search, whole-word matching, and regular expressions for advanced replacements.</p>
+    </div>
+  </section>
+
+  <!-- ── TOOL APP ── -->
+  <section class="tool-app-section" id="tool" aria-label="Word Replacer Tool">
+    <div class="container">
+
+      <!-- Input -->
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-title">Input Text</span>
+          <div class="tool-card-actions">
+            <button class="act-btn" id="wr-paste">Paste</button>
+            <button class="act-btn" id="wr-sample">Sample</button>
+            <button class="act-btn danger" id="wr-clear">Clear</button>
+          </div>
+        </div>
+        <textarea class="tool-textarea" id="wr-input" placeholder="Paste or type the text you want to edit…" rows="8" aria-label="Input text"></textarea>
+        <div class="tool-footer-bar">
+          <span class="tool-stat" id="wr-in-stat">0 chars · 0 words</span>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="wr-controls">
+        <div class="wr-row">
+          <div class="wr-field">
+            <label for="wr-find">Find</label>
+            <input type="text" id="wr-find" placeholder='e.g. "hello" or /\bcat\b/i' autocomplete="off" spellcheck="false"/>
+          </div>
+          <div class="wr-field">
+            <label for="wr-replace">Replace with</label>
+            <input type="text" id="wr-replace" placeholder='e.g. "hi" (leave blank to delete)' autocomplete="off" spellcheck="false"/>
+          </div>
+        </div>
+        <div class="wr-options">
+          <label class="wr-toggle">
+            <input type="checkbox" id="wr-case"/> <span>Case sensitive</span>
+          </label>
+          <label class="wr-toggle">
+            <input type="checkbox" id="wr-whole"/> <span>Whole word only</span>
+          </label>
+          <label class="wr-toggle">
+            <input type="checkbox" id="wr-regex"/> <span>Regex mode</span>
+          </label>
+          <span class="match-count zero" id="wr-match-count">0 matches</span>
+        </div>
+        <div class="wr-btn-row">
+          <button class="act-btn primary" id="wr-replace-all">Replace All</button>
+          <button class="act-btn" id="wr-undo" title="Undo last replacement">↩ Undo</button>
+          <button class="act-btn" id="wr-count-btn">Count Matches</button>
+        </div>
+      </div>
+
+      <!-- Output -->
+      <div class="tool-card" style="margin-top:24px;">
+        <div class="tool-card-header">
+          <span class="tool-card-title">Output Text</span>
+          <div class="tool-card-actions">
+            <button class="act-btn" id="wr-copy">Copy</button>
+            <button class="act-btn" id="wr-download">Download</button>
+            <button class="act-btn danger" id="wr-clear-out">Clear</button>
+          </div>
+        </div>
+        <textarea class="tool-textarea output-area" id="wr-output" placeholder="Result appears here after replacement…" rows="8" readonly aria-label="Replacement output"></textarea>
+        <div class="tool-footer-bar">
+          <span class="tool-stat" id="wr-out-stat">0 chars · 0 words</span>
+          <span class="tool-stat" id="wr-replace-stat" style="color:var(--sage);font-weight:600;"></span>
+        </div>
+      </div>
+
+      <!-- History -->
+      <div class="history-section" id="history-section" style="display:none;">
+        <div class="history-title">Recent Replacements</div>
+        <div class="history-list" id="history-list"></div>
+      </div>
+
+      <div class="tool-notif" id="wr-notif" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- ── HOW TO ── -->
+  <section class="howto-section" aria-label="How to use Word Replacer">
+    <div class="container">
+      <div class="section-label">↓ Step by Step</div>
+      <h2 class="section-title">How to Use the Word Replacer</h2>
+      <div class="howto-steps">
+        <div class="howto-step">
+          <div class="howto-num">1</div>
+          <div class="howto-body">
+            <h3>Paste Your Text</h3>
+            <p>Paste the text you want to edit into the Input Text box. This could be a blog article, a code file, an email template, a legal document—anything that needs word or phrase substitutions. Use the <strong>Sample</strong> button to see a demonstration with example text.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="howto-num">2</div>
+          <div class="howto-body">
+            <h3>Enter Find &amp; Replace Terms</h3>
+            <p>Type the word or phrase you want to find in the <strong>Find</strong> field. Enter the replacement text in the <strong>Replace with</strong> field. Leave Replace with blank to delete all occurrences of the search term without substituting anything.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="howto-num">3</div>
+          <div class="howto-body">
+            <h3>Configure Matching Options</h3>
+            <p>Toggle <strong>Case sensitive</strong> to match exact capitalisation. Enable <strong>Whole word only</strong> to avoid partial matches (e.g. "cat" won't match "concatenate"). Switch on <strong>Regex mode</strong> for advanced pattern matching using standard JavaScript regular expression syntax.</p>
+          </div>
+        </div>
+        <div class="howto-step">
+          <div class="howto-num">4</div>
+          <div class="howto-body">
+            <h3>Click Replace All &amp; Copy</h3>
+            <p>Hit <strong>Replace All</strong> to substitute every match in one go. The output panel shows the edited text and a count of how many replacements were made. Use <strong>↩ Undo</strong> to revert to the previous state, then <strong>Copy</strong> or <strong>Download</strong> your result.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DESCRIPTION ── -->
+  <section class="desc-section" aria-label="About Word Replacer">
+    <div class="container">
+      <div class="section-label">↓ About This Tool</div>
+      <h2 class="section-title">Why Use a Word Replacer Tool?</h2>
+      <p class="section-sub">Manual find-and-replace in a word processor only scratches the surface. This tool gives you precise control over how and where substitutions happen.</p>
+      <div class="desc-grid">
+        <div class="desc-card">
+          <div class="desc-card-icon">⚡</div>
+          <h3>Bulk Replacement in Seconds</h3>
+          <p>Replace hundreds of occurrences of a word across a long document in one click. No scrolling, no missing instances, no risk of accidentally editing the wrong word. Every match is found and replaced consistently and instantly.</p>
+        </div>
+        <div class="desc-card">
+          <div class="desc-card-icon">🔍</div>
+          <h3>Whole-Word Matching</h3>
+          <p>Prevent unintended partial matches. When whole-word mode is on, searching for "log" will not alter "login", "catalogue", or "dialog"—only the standalone word "log". Essential when working with code, technical writing, or any text with compound words.</p>
+        </div>
+        <div class="desc-card">
+          <div class="desc-card-icon">🧩</div>
+          <h3>Regex Pattern Support</h3>
+          <p>Power users can write regular expressions to match complex patterns. Replace all email addresses, strip HTML tags, normalise phone number formats, or substitute entire sentence structures using capture groups. Standard JavaScript regex syntax is fully supported.</p>
+        </div>
+        <div class="desc-card">
+          <div class="desc-card-icon">↩️</div>
+          <h3>Instant Undo</h3>
+          <p>Made a mistake? The Undo button reverts your last replacement instantly, restoring the previous output state. You can experiment freely with different search terms and replacement strings without worrying about losing your work.</p>
+        </div>
+        <div class="desc-card">
+          <div class="desc-card-icon">📋</div>
+          <h3>Replacement History</h3>
+          <p>Every replacement you make is logged in the history panel showing what was found and what it was replaced with. This is useful when making sequential changes to a document and you need to track or audit what substitutions were applied.</p>
+        </div>
+        <div class="desc-card">
+          <div class="desc-card-icon">🛡️</div>
+          <h3>100% Private</h3>
+          <p>All processing runs locally in your browser. Your text, search terms, and replacements are never transmitted to any server. You can safely use this tool with confidential documents, proprietary code, and sensitive business content.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="tool-faq-section" aria-label="Word Replacer FAQ">
+    <div class="container">
+      <div class="section-label">↓ Common Questions</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="tool-faq-list">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Can I replace a word with nothing (delete it)?</button>
+          <div class="faq-a"><p>Yes. Simply leave the <strong>Replace with</strong> field blank. The tool will find all occurrences of your search term and remove them entirely from the text, closing any gap they occupied. This is useful for stripping filler words, debug labels, unwanted tags, or placeholder text.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">How does regex mode work?</button>
+          <div class="faq-a"><p>When Regex mode is enabled, the Find field is interpreted as a JavaScript regular expression pattern. For example, entering <code>\d+</code> will match all sequences of digits, and entering <code>(foo|bar)</code> will match "foo" or "bar". Capture groups work in the replacement field using <code>$1</code>, <code>$2</code> notation. Case sensitivity and whole-word options still apply when compatible with the pattern.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What's the difference between case-sensitive and case-insensitive search?</button>
+          <div class="faq-a"><p>With case-sensitive mode off (the default), searching for "apple" will match "apple", "Apple", and "APPLE". With case-sensitive mode on, only the exact capitalisation "apple" will be matched. Use case-insensitive mode for natural language text and case-sensitive mode when working with code where capitalisation is semantically significant.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Is there a limit to how much text I can process?</button>
+          <div class="faq-a"><p>There is no enforced limit. Processing runs entirely in your browser, so practical limits depend on your device. Most computers handle several hundred thousand characters without any slowdown. Very large files (multiple megabytes of text) may take a brief moment to process but will complete without errors.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Can I make multiple different replacements on the same text?</button>
+          <div class="faq-a"><p>Yes. After each Replace All operation, the output panel updates with the new text. You can then modify the Find and Replace fields and run another replacement on the current output—chaining multiple substitutions on the same document. The Undo button reverts the most recent replacement if you need to step back.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Does the tool preserve line breaks and formatting?</button>
+          <div class="faq-a"><p>Yes. Line breaks, indentation, tabs, and all whitespace are preserved exactly as they appear in the input. Only the matched search terms are modified—everything else remains untouched. This makes the tool safe to use on code, Markdown, HTML, and structured text.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="tool-cta-section" aria-label="Try other tools">
+    <div class="container">
+      <div class="tool-cta-inner">
+        <h2>Explore More Free Text Tools</h2>
+        <p>Case Converter, XML Formatter, Random Text Generator, and the full Text Formatter suite—all free and browser-based.</p>
+        <a href="/" class="act-btn primary">Back to All Tools</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-root"></div>
+
+<script src="header.js"></script>
+<script src="footer.js"></script>
+<script>
+/* ── WORD REPLACER APP ── */
+(function(){
+  const inputEl   = document.getElementById('wr-input');
+  const findEl    = document.getElementById('wr-find');
+  const replaceEl = document.getElementById('wr-replace');
+  const outputEl  = document.getElementById('wr-output');
+  const inStat    = document.getElementById('wr-in-stat');
+  const outStat   = document.getElementById('wr-out-stat');
+  const repStat   = document.getElementById('wr-replace-stat');
+  const matchCnt  = document.getElementById('wr-match-count');
+  const notif     = document.getElementById('wr-notif');
+  const histSec   = document.getElementById('history-section');
+  const histList  = document.getElementById('history-list');
+
+  let undoStack = [];
+  let history   = [];
+
+  const SAMPLE = `The quick brown fox jumps over the lazy dog.
+TextFormatter is a great tool for formatting text.
+The fox ran quickly through the forest.
+Every formatter needs a great find and replace feature.
+The lazy dog slept all afternoon near the old tree.`;
+
+  function stat(t) {
+    return `${t.length.toLocaleString()} chars · ${(t.trim().split(/\s+/).filter(Boolean).length).toLocaleString()} words`;
+  }
+
+  function buildRegex(find, caseSensitive, wholeWord, regexMode) {
+    let pattern = regexMode ? find : find.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (wholeWord) pattern = `\\b${pattern}\\b`;
+    const flags = caseSensitive ? 'g' : 'gi';
+    return new RegExp(pattern, flags);
+  }
+
+  function countMatches() {
+    const find = findEl.value;
+    if (!find || !inputEl.value) { matchCnt.textContent = '0 matches'; matchCnt.className = 'match-count zero'; return 0; }
+    try {
+      const re = buildRegex(find, document.getElementById('wr-case').checked, document.getElementById('wr-whole').checked, document.getElementById('wr-regex').checked);
+      const m = inputEl.value.match(re);
+      const n = m ? m.length : 0;
+      matchCnt.textContent = `${n} match${n !== 1 ? 'es' : ''}`;
+      matchCnt.className = n > 0 ? 'match-count' : 'match-count zero';
+      return n;
+    } catch { matchCnt.textContent = 'invalid pattern'; matchCnt.className = 'match-count zero'; return 0; }
+  }
+
+  inputEl.addEventListener('input', () => { inStat.textContent = stat(inputEl.value); countMatches(); });
+  findEl.addEventListener('input', countMatches);
+  document.getElementById('wr-case').addEventListener('change', countMatches);
+  document.getElementById('wr-whole').addEventListener('change', countMatches);
+  document.getElementById('wr-regex').addEventListener('change', countMatches);
+
+  document.getElementById('wr-replace-all').addEventListener('click', () => {
+    const text  = inputEl.value;
+    const find  = findEl.value;
+    if (!text.trim()) { showNotif('Please enter some text first.', 'error'); return; }
+    if (!find) { showNotif('Please enter a search term.', 'error'); return; }
+    try {
+      const re = buildRegex(find, document.getElementById('wr-case').checked, document.getElementById('wr-whole').checked, document.getElementById('wr-regex').checked);
+      const rep = replaceEl.value;
+      undoStack.push(outputEl.value || '');
+      const result = text.replace(re, rep);
+      const n = (text.match(re) || []).length;
+      outputEl.value = result;
+      outStat.textContent = stat(result);
+      repStat.textContent = `✓ ${n} replacement${n !== 1 ? 's' : ''} made`;
+      addHistory(find, rep, n);
+      showNotif(`${n} occurrence${n !== 1 ? 's' : ''} replaced successfully.`, 'success');
+    } catch(e) { showNotif('Invalid regex pattern: ' + e.message, 'error'); }
+  });
+
+  document.getElementById('wr-count-btn').addEventListener('click', () => {
+    const n = countMatches();
+    showNotif(`Found ${n} match${n !== 1 ? 'es' : ''} in the text.`, n > 0 ? 'info' : 'error');
+  });
+
+  document.getElementById('wr-undo').addEventListener('click', () => {
+    if (undoStack.length === 0) { showNotif('Nothing to undo.', 'error'); return; }
+    outputEl.value = undoStack.pop();
+    outStat.textContent = stat(outputEl.value);
+    repStat.textContent = '';
+    showNotif('Last replacement undone.', 'info');
+  });
+
+  document.getElementById('wr-paste').addEventListener('click', async () => {
+    try { inputEl.value = await navigator.clipboard.readText(); inStat.textContent = stat(inputEl.value); } catch { showNotif('Clipboard access denied.','error'); }
+  });
+  document.getElementById('wr-sample').addEventListener('click', () => { inputEl.value = SAMPLE; inStat.textContent = stat(SAMPLE); countMatches(); });
+  document.getElementById('wr-clear').addEventListener('click', () => { inputEl.value = ''; inStat.textContent = '0 chars · 0 words'; countMatches(); });
+  document.getElementById('wr-copy').addEventListener('click', () => {
+    if (!outputEl.value) return;
+    navigator.clipboard.writeText(outputEl.value).then(() => showNotif('Copied to clipboard!', 'success'));
+  });
+  document.getElementById('wr-clear-out').addEventListener('click', () => { outputEl.value = ''; outStat.textContent = '0 chars · 0 words'; repStat.textContent = ''; });
+  document.getElementById('wr-download').addEventListener('click', () => {
+    if (!outputEl.value) return;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([outputEl.value], {type:'text/plain'}));
+    a.download = 'replaced-text.txt'; a.click();
+  });
+
+  function addHistory(find, rep, n) {
+    if (n === 0) return;
+    history.unshift({ find, rep: rep || '(deleted)', n });
+    if (history.length > 8) history.pop();
+    histSec.style.display = 'block';
+    histList.innerHTML = history.map(h =>
+      `<div class="history-item">"${h.find}" <span class="arr">→</span> "${h.rep}" <span style="margin-left:auto;color:var(--sage);font-weight:600;">${h.n}×</span></div>`
+    ).join('');
+  }
+
+  function showNotif(msg, type) {
+    notif.textContent = msg;
+    notif.className = 'tool-notif ' + type;
+    clearTimeout(notif._t);
+    notif._t = setTimeout(() => { notif.textContent = ''; notif.className = 'tool-notif'; }, 3500);
+  }
+
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const a = btn.nextElementSibling;
+      const open = a.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+})();
+</script>
+</body>
+</html>
