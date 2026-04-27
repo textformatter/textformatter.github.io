@@ -38,20 +38,20 @@
           <div class="footer-col">
             <h4>Resources</h4>
             <ul>
-              <li><a href="#how-it-works">How It Works</a></li>
-              <li><a href="#use-cases">Use Cases</a></li>
-              <li><a href="#tips">Formatting Tips</a></li>
-              <li><a href="#faq">FAQ</a></li>
-              <li><a href="#about">About</a></li>
+              <li><a href="case-converter">Case Converter</a></li>
+              <li><a href="random-text">Random Text</a></li>
+              <li><a href="word-replacer">Word Replacer</a></li>
+              <li><a href="xml-formatter">XML Formatter</a></li>              
             </ul>
           </div>
           
           <div class="footer-col">
-            <h4>Legal</h4>
+            <h4>Pages</h4>
             <ul>
               <li><a href="#" id="privacy-link">Privacy Policy</a></li>
               <li><a href="#" id="terms-link">Terms of Use</a></li>
               <li><a href="#" id="cookies-link">Cookie Policy</a></li>
+              <li><a href="#about">About</a></li>
             </ul>
           </div>
         </div>
